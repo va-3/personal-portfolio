@@ -2,6 +2,7 @@ import type { Metadata } from 'next';
 import { Inter } from 'next/font/google';
 import Navigation from '@/components/Navigation';
 import Footer from '@/components/Footer';
+import SmoothScrollProvider from '@/components/SmoothScrollProvider';
 import './globals.css';
 
 const inter = Inter({
@@ -30,15 +31,17 @@ export default function RootLayout({
   return (
     <html lang="en" className={inter.variable}>
       <body className="antialiased">
-        <a
-          href="#main-content"
-          className="sr-only focus:not-sr-only focus:absolute focus:top-4 focus:left-4 focus:z-50 focus:px-4 focus:py-2 focus:bg-[var(--color-primary)] focus:text-white focus:rounded-lg"
-        >
-          Skip to main content
-        </a>
-        <Navigation />
-        <main id="main-content">{children}</main>
-        <Footer />
+        <SmoothScrollProvider>
+          <a
+            href="#main-content"
+            className="sr-only focus:not-sr-only focus:absolute focus:top-4 focus:left-4 focus:z-50 focus:px-4 focus:py-2 focus:bg-[var(--color-primary)] focus:text-white focus:rounded-lg"
+          >
+            Skip to main content
+          </a>
+          <Navigation />
+          <main id="main-content">{children}</main>
+          <Footer />
+        </SmoothScrollProvider>
       </body>
     </html>
   );
